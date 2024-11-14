@@ -6,9 +6,9 @@ import {
   NSE_TARGET_NAME
 } from './iosConstants';
 
-// project `ios/OneSignalNotificationServiceExtension` directory
-const entitlementsFileName =`OneSignalNotificationServiceExtension.entitlements`;
-const plistFileName = `OneSignalNotificationServiceExtension-Info.plist`;
+// project `ios/BituNotificationServiceExtension` directory
+const entitlementsFileName =`BituNotificationServiceExtension.entitlements`;
+const plistFileName = `BituNotificationServiceExtension-Info.plist`;
 
 export default class NseUpdaterManager {
   private nsePath = '';

@@ -45,7 +45,7 @@ Since there is only one capability (Push Notifications) required by your app, ev
 #### Complex setup explanation
 Having additional capabilities on your app will result in a more complex setup, including having to use local credentials. The following is an explanation of why. It is not imperative to understand but we have included it for context.
 
-The OneSignal plugin will create an additional target: `OneSignalNotificationServiceExtension`. This target is the iOS service extension that adds support for Confirmed Deliveries, badges, media attachments, action buttons, and influenced opens (Firebase Analytics). Learn more [here](https://documentation.onesignal.com/docs/service-extensions). The plugin will automatically add app groups to both targets' entitlements files which are required if you want to make use of these features. They allow your app to execute code when a notification is received, even if your app is not active.
+The OneSignal plugin will create an additional target: `BituNotificationServiceExtension`. This target is the iOS service extension that adds support for Confirmed Deliveries, badges, media attachments, action buttons, and influenced opens (Firebase Analytics). Learn more [here](https://documentation.onesignal.com/docs/service-extensions). The plugin will automatically add app groups to both targets' entitlements files which are required if you want to make use of these features. They allow your app to execute code when a notification is received, even if your app is not active.
 
 Each target has an entitlement file. If there are multiple entitlements files per project, EAS will randomly pick one and apply it to both targets. To mitigate this, we have added the push capability entilement to both files (even though it's really only necessary in the main target). This can still pose a problem if it picks the NSE's entitlements file since it *could* break any other capabilities in your project, given that file will not have capabilities added to your main target by yourself or other plugins.
 
@@ -81,13 +81,13 @@ To build successfully, you will need to create and use local credentials (one fo
 ### 2. Identifiers
 In your [Apple developer console](https://developer.apple.com) create two identifiers with the following format:
    - `<com.example.app>` <-- you likely already have this one
-   - `<com.example.app>.OneSignalNotificationServiceExtension`
+   - `<com.example.app>.BituNotificationServiceExtension`
 
 #### When modifying your existing main app identifier:
    - add the App Groups capability like so: `group.<identifier>.onesignal`
    - keep / add the "Push Notifications" capability
 
-#### When creating a new identifier for `OneSignalNotificationServiceExtension`:
+#### When creating a new identifier for `BituNotificationServiceExtension`:
    - select AppId from the list of identifier types
    - select App when choosing between App and App Clip
    - add the App Groups capability like so: `group.<identifier>.onesignal`
@@ -100,7 +100,7 @@ Make sure to build with both identifiers containing the AppGroup simultaneously.
 Create AdHoc (local development) and AppStore (production) provisioning profiles with both identifiers (four provisioning profiles total). Both provisioning profiles should use the same distribution certificate that is used by your app. Download the profiles.
 
 ### 4. Add the profiles to your `credentials.json` file:
-Use the same distribution certificate for the `OneSignalNotificationServiceExtension` as is used for your app (no need to create a new cert).
+Use the same distribution certificate for the `BituNotificationServiceExtension` as is used for your app (no need to create a new cert).
 
 We recommend creating a `certs` directory in your project with subdirectories for each build type (e.g: `certs/adhoc` & `certs/appstore`). Doing so, you can more easily switch which provisioning profiles get used at build time.
 
@@ -122,7 +122,7 @@ We recommend creating a `certs` directory in your project with subdirectories fo
             },
             "provisioningProfilePath": "certs/adhoc/***mobileappprofile.mobileprovision"
         },
-        "OneSignalNotificationServiceExtension": {
+        "BituNotificationServiceExtension": {
             "distributionCertificate": {
                 "path": "certs/ios_distribution_certificate.p12",
                 "password": "***"

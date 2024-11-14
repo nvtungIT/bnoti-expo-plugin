@@ -9,7 +9,7 @@ import { withOneSignalAndroid } from './withOneSignalAndroid';
 import { withOneSignalIos } from './withOneSignalIos';
 import { validatePluginProps } from '../support/helpers';
 
-const withOneSignal: ConfigPlugin<OneSignalPluginProps> = (config, props) => {
+const withBituNotificationPlugin: ConfigPlugin<OneSignalPluginProps> = (config, props) => {
   // if props are undefined, throw error
   if (!props) {
     throw new Error(
@@ -20,9 +20,9 @@ const withOneSignal: ConfigPlugin<OneSignalPluginProps> = (config, props) => {
   validatePluginProps(props);
 
   config = withOneSignalIos(config, props);
-  config = withOneSignalAndroid(config, props);
+  // config = withOneSignalAndroid(config, props);
 
   return config;
 };
 
-export default withOneSignal;
+export default withBituNotificationPlugin;

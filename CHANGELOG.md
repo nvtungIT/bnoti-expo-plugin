@@ -29,7 +29,7 @@ All notable changes to this project will be documented in this file.
 
 ### `1.1.2` - 10/04/22
 #### Fixes
-- Specify `use_frameworks` on `OneSignalNotificationServiceExtension` target in iOS Podfile when applicable (i.e. the app target also specifies `use_frameworks`).
+- Specify `use_frameworks` on `BituNotificationServiceExtension` target in iOS Podfile when applicable (i.e. the app target also specifies `use_frameworks`).
 
 ## September 2022
 ### `1.1.1` - 09/06/22

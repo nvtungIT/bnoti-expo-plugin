@@ -1,5 +1,5 @@
 //  NotificationService.h
-//  OneSignalNotificationServiceExtension
+//  BituNotificationServiceExtension
 
 #import <UserNotifications/UserNotifications.h>
 

@@ -84,13 +84,13 @@ const withSmallIconAccentColor: ConfigPlugin<OneSignalPluginProps> = (config, on
     // Check if the accent color entry already exists
     const hasAccentColor = strings.some(
       (stringEntry) =>
-        stringEntry.$?.name === 'onesignal_notification_accent_color' &&
+        stringEntry.$?.name === 'notification_accent_color' &&
         stringEntry._ === colorInARGB
     );
 
     if (!hasAccentColor) {
       const accentColorEntry = {
-        $: { name: 'onesignal_notification_accent_color' },
+        $: { name: 'notification_accent_color' },
         _: colorInARGB,
       };
 
