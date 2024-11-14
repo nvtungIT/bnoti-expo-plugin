@@ -14,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "buildNumber": "1.0",
@@ -34,7 +32,7 @@
     },
     "plugins": [
       [
-        "onesignal-expo-plugin",
+        "bnoti-expo-plugin",
         {
           "mode": "development",
           "iPhoneDeploymentTarget": "12.0"

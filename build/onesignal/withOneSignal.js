@@ -9,7 +9,7 @@ const helpers_1 = require("../support/helpers");
 const withBituNotificationPlugin = (config, props) => {
     // if props are undefined, throw error
     if (!props) {
-        throw new Error('You are trying to use the OneSignal plugin without any props. Property "mode" is required. Please see https://github.com/OneSignal/onesignal-expo-plugin for more info.');
+        throw new Error('You are trying to use the OneSignal plugin without any props. Property "mode" is required. Please see https://github.com/OneSignal/bnoti-expo-plugin for more info.');
     }
     (0, helpers_1.validatePluginProps)(props);
     config = (0, withOneSignalIos_1.withOneSignalIos)(config, props);

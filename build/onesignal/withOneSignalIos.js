@@ -45,9 +45,9 @@ const withAppEnvironment = (config, onesignalProps) => {
     return (0, config_plugins_1.withEntitlementsPlist)(config, (newConfig) => {
         if ((onesignalProps === null || onesignalProps === void 0 ? void 0 : onesignalProps.mode) == null) {
             throw new Error(`
-        Missing required "mode" key in your app.json or app.config.js file for "onesignal-expo-plugin".
+        Missing required "mode" key in your app.json or app.config.js file for "bnoti-expo-plugin".
         "mode" can be either "development" or "production".
-        Please see onesignal-expo-plugin's README.md for more details.`);
+        Please see bnoti-expo-plugin's README.md for more details.`);
         }
         newConfig.modResults["aps-environment"] = onesignalProps.mode;
         return newConfig;
@@ -77,7 +77,7 @@ const withRemoteNotificationsPermissions = (config) => {
  */
 const withAppGroupPermissions = (config) => {
     const APP_GROUP_KEY = "com.apple.security.application-groups";
-    return (0, config_plugins_1.withEntitlementsPlist)(config, newConfig => {
+    return (0, config_plugins_1.withEntitlementsPlist)(config, (newConfig) => {
         var _a;
         if (!Array.isArray(newConfig.modResults[APP_GROUP_KEY])) {
             newConfig.modResults[APP_GROUP_KEY] = [];
@@ -99,21 +99,23 @@ const withEasManagedCredentials = (config) => {
 };
 const withOneSignalPodfile = (config) => {
     return (0, config_plugins_1.withDangerousMod)(config, [
-        'ios',
+        "ios",
         async (config) => {
             // not awaiting in order to not block main thread
             const iosRoot = path.join(config.modRequest.projectRoot, "ios");
-            (0, updatePodfile_1.updatePodfile)(iosRoot).catch(err => { OneSignalLog_1.OneSignalLog.error(err); });
+            (0, updatePodfile_1.updatePodfile)(iosRoot).catch((err) => {
+                OneSignalLog_1.OneSignalLog.error(err);
+            });
             return config;
         },
     ]);
 };
 const withOneSignalNSE = (config, props) => {
     // support for monorepos where node_modules can be above the project directory.
-    const pluginDir = require.resolve("onesignal-expo-plugin/package.json");
+    const pluginDir = require.resolve("bnoti-expo-plugin/package.json");
     const sourceDir = path.join(pluginDir, "../build/support/serviceExtensionFiles/");
     return (0, config_plugins_1.withDangerousMod)(config, [
-        'ios',
+        "ios",
         async (config) => {
             var _a, _b, _c, _d, _e;
             const iosPath = path.join(config.modRequest.projectRoot, "ios");
@@ -138,7 +140,7 @@ const withOneSignalNSE = (config, props) => {
     ]);
 };
 const withOneSignalXcodeProject = (config, props) => {
-    return (0, config_plugins_1.withXcodeProject)(config, newConfig => {
+    return (0, config_plugins_1.withXcodeProject)(config, (newConfig) => {
         var _a, _b;
         const xcodeProject = newConfig.modResults;
         if (!!xcodeProject.pbxTargetByName(iosConstants_1.NSE_TARGET_NAME)) {
@@ -151,7 +153,9 @@ const withOneSignalXcodeProject = (config, props) => {
         // files / folder appear in the file explorer in Xcode.
         const groups = xcodeProject.hash.project.objects["PBXGroup"];
         Object.keys(groups).forEach(function (key) {
-            if (typeof groups[key] === "object" && groups[key].name === undefined && groups[key].path === undefined) {
+            if (typeof groups[key] === "object" &&
+                groups[key].name === undefined &&
+                groups[key].path === undefined) {
                 xcodeProject.addToPbxGroup(extGroup.uuid, key);
             }
         });
@@ -160,8 +164,10 @@ const withOneSignalXcodeProject = (config, props) => {
         // An upstream fix should be made to the code referenced in this link:
         //   - https://github.com/apache/cordova-node-xcode/blob/8b98cabc5978359db88dc9ff2d4c015cba40f150/lib/pbxProject.js#L860
         const projObjects = xcodeProject.hash.project.objects;
-        projObjects['PBXTargetDependency'] = projObjects['PBXTargetDependency'] || {};
-        projObjects['PBXContainerItemProxy'] = projObjects['PBXTargetDependency'] || {};
+        projObjects["PBXTargetDependency"] =
+            projObjects["PBXTargetDependency"] || {};
+        projObjects["PBXContainerItemProxy"] =
+            projObjects["PBXTargetDependency"] || {};
         // Add the NSE target
         // This adds PBXTargetDependency and PBXContainerItemProxy for you
         const nseTarget = xcodeProject.addTarget(iosConstants_1.NSE_TARGET_NAME, "app_extension", iosConstants_1.NSE_TARGET_NAME, `${(_a = config.ios) === null || _a === void 0 ? void 0 : _a.bundleIdentifier}.${iosConstants_1.NSE_TARGET_NAME}`);
@@ -177,7 +183,8 @@ const withOneSignalXcodeProject = (config, props) => {
                 configurations[key].buildSettings.PRODUCT_NAME == `"${iosConstants_1.NSE_TARGET_NAME}"`) {
                 const buildSettingsObj = configurations[key].buildSettings;
                 buildSettingsObj.DEVELOPMENT_TEAM = props === null || props === void 0 ? void 0 : props.devTeam;
-                buildSettingsObj.IPHONEOS_DEPLOYMENT_TARGET = (_b = props === null || props === void 0 ? void 0 : props.iPhoneDeploymentTarget) !== null && _b !== void 0 ? _b : iosConstants_1.IPHONEOS_DEPLOYMENT_TARGET;
+                buildSettingsObj.IPHONEOS_DEPLOYMENT_TARGET =
+                    (_b = props === null || props === void 0 ? void 0 : props.iPhoneDeploymentTarget) !== null && _b !== void 0 ? _b : iosConstants_1.IPHONEOS_DEPLOYMENT_TARGET;
                 buildSettingsObj.TARGETED_DEVICE_FAMILY = iosConstants_1.TARGETED_DEVICE_FAMILY;
                 buildSettingsObj.CODE_SIGN_ENTITLEMENTS = `${iosConstants_1.NSE_TARGET_NAME}/${iosConstants_1.NSE_TARGET_NAME}.entitlements`;
                 buildSettingsObj.CODE_SIGN_STYLE = "Automatic";

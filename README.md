@@ -1,12 +1,12 @@
-<h1 align="center">Welcome to the onesignal-expo-plugin 👋</h1>
+<h1 align="center">Welcome to the bnoti-expo-plugin 👋</h1>
 <p>
-  <a href="https://www.npmjs.com/package/onesignal-expo-plugin" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/onesignal-expo-plugin.svg">
+  <a href="https://www.npmjs.com/package/bnoti-expo-plugin" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/bnoti-expo-plugin.svg">
   </a>
-  <a href="https://github.com/OneSignal/onesignal-expo-plugin#readme" target="_blank">
+  <a href="https://github.com/OneSignal/bnoti-expo-plugin#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
-  <a href="https://github.com/OneSignal/onesignal-expo-plugin/graphs/commit-activity" target="_blank">
+  <a href="https://github.com/OneSignal/bnoti-expo-plugin/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
   <a href="https://twitter.com/onesignal" target="_blank">
@@ -16,8 +16,8 @@
 
 > The OneSignal Expo plugin allows you to use OneSignal without leaving the managed workflow. Developed in collaboration with SweetGreen.
 
-* 🏠 [Homepage](https://github.com/OneSignal/onesignal-expo-plugin#readme)
-* 🖤 [npm](https://www.npmjs.com/package/onesignal-expo-plugin)
+* 🏠 [Homepage](https://github.com/OneSignal/bnoti-expo-plugin#readme)
+* 🖤 [npm](https://www.npmjs.com/package/bnoti-expo-plugin)
 
 ## Overview
 This plugin is an [Expo Config Plugin](https://docs.expo.dev/guides/config-plugins/). It extends the Expo config to allow customizing the prebuild phase of managed workflow builds (no need to eject to a bare workflow). For the purposes of OneSignal integration, the plugin facilitates automatically generating/configuring the necessary native code files needed to get the [OneSignal React-Native SDK](https://github.com/OneSignal/react-native-onesignal) to work. You can think of adding a plugin as adding custom native code.
@@ -30,10 +30,10 @@ This plugin is an [Expo Config Plugin](https://docs.expo.dev/guides/config-plugi
 ---
 
 ## Install
-You need both the `onesignal-expo-plugin` *and* the `react-native-onesignal` npm package.
+You need both the `bnoti-expo-plugin` *and* the `react-native-onesignal` npm package.
 
 ```sh
-npx expo install onesignal-expo-plugin
+npx expo install bnoti-expo-plugin
 
 # npm
 npm install react-native-onesignal
@@ -51,7 +51,7 @@ Add the plugin to the **front** of the [plugin array](https://docs.expo.dev/vers
 {
   "plugins": [
     [
-      "onesignal-expo-plugin",
+      "bnoti-expo-plugin",
       {
         "mode": "development",
       }
@@ -68,7 +68,7 @@ export default {
   ...
   plugins: [
     [
-      "onesignal-expo-plugin",
+      "bnoti-expo-plugin",
       {
         mode: "development",
       }
@@ -88,7 +88,7 @@ You can pass props to the plugin config object to configure:
 | `smallIcons`             | optional | An array of local paths to small notification icons for Android.  Image should be white, transparent, and 96x96 in size.  Input images will be automatically scaled down and placed in the appropriate resource folders.  e.g: `["./assets/ic_stat_onesignal_default.png"]`. See https://documentation.onesignal.com/docs/customize-notification-icons#small-notification-icons.  |
 | `largeIcons`             | optional | An array of local paths to large notification icons for Android.  Image should be white, transparent, and 256x256 in size.  e.g: `["./assets/ic_onesignal_large_icon_default.png"]`. See https://documentation.onesignal.com/docs/customize-notification-icons#large-notification-icons.                                                                                                |
 | `smallIconAccentColor`             | optional | The accent color to use for notification icons on Android. Must be a valid hex value, e.g: `"#FF0000"`  |
-| `iosNSEFilePath`         | optional | The local path to a custom Notification Service Extension (NSE), written in Objective-C. The NSE will typically start as a copy of the [default NSE](https://github.com/OneSignal/onesignal-expo-plugin/blob/main/support/serviceExtensionFiles/NotificationService.m), then altered to support any custom logic required.  e.g: `"./assets/NotificationService.m"`. |
+| `iosNSEFilePath`         | optional | The local path to a custom Notification Service Extension (NSE), written in Objective-C. The NSE will typically start as a copy of the [default NSE](https://github.com/OneSignal/bnoti-expo-plugin/blob/main/support/serviceExtensionFiles/NotificationService.m), then altered to support any custom logic required.  e.g: `"./assets/NotificationService.m"`. |
 
 ### OneSignal App ID
 Add your OneSignal App ID to your [Expo constants via the `extra` param](https://docs.expo.dev/versions/latest/config/app/#extra):
@@ -167,7 +167,7 @@ npx expo run:android
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/OneSignal/onesignal-expo-plugin/issues).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/OneSignal/bnoti-expo-plugin/issues).
 
 ## Show your support
 
@@ -183,4 +183,4 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2023 [OneSignal](https://github.com/OneSignal).<br />
-This project is [MIT](https://github.com/OneSignal/onesignal-expo-plugin/blob/main/LICENSE) licensed.
+This project is [MIT](https://github.com/OneSignal/bnoti-expo-plugin/blob/main/LICENSE) licensed.
